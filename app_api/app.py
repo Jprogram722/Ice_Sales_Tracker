@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 import uvicorn
 from database import connect
+from schemas import DaysSchema
+from controllers import insert_into_days_table
 
 app = FastAPI()
 
@@ -11,7 +13,7 @@ def test() -> None:
 
 
 @app.get("/api/routes")
-def routes() -> None:
+def routes() -> list[dict[int, str]]:
     conn, cursor = connect()
     cursor.execute("SELECT * FROM route")
 
@@ -25,6 +27,12 @@ def routes() -> None:
         route_data.append({"id": row[0], "route": row[1]})
 
     return route_data
+
+
+@app.post("/api/days_info")
+def record_day_info(days_data: DaysSchema):
+    res = insert_into_days_table(days_data)
+    return res
 
 
 if __name__ == "__main__":
