@@ -7,11 +7,6 @@ from controllers import insert_into_days_table
 app = FastAPI()
 
 
-@app.get("/api/test")
-def test() -> None:
-    return {"msg": "Hello"}
-
-
 @app.get("/api/routes")
 def routes() -> list[dict[int, str]]:
     conn, cursor = connect()
