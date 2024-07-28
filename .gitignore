@@ -1,4 +1,6 @@
 venv
-ice_app_flowchart.png
-ice_sales_ERD.drawio
+documentation/ice_app_flowchart.png
+documentation/ice_sales_ERD.drawio
 app_api/__pycache__
+.env
+documentation/.$Ice_sales_ERD.drawio.bkp
