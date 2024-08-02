@@ -8,7 +8,7 @@ app = FastAPI()
 
 
 @app.get("/api/routes")
-def routes() -> list[dict[int, str]]:
+def routes():
     conn, cursor = connect()
     cursor.execute("SELECT * FROM route")
 
@@ -31,4 +31,4 @@ def record_day_info(days_data: DaysSchema):
 
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="localhost", port=8000, reload=True)
+    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)

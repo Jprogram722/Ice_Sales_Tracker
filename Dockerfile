@@ -1,15 +1,13 @@
-FROM mysql:latest
+FROM python:3.10
 
-ARG MYSQL_DATABASE
-ARG MYSQL_USER
-ARG MYSQL_PASSWORD
-ARG MYSQL_ROOT_PASSWORD
+COPY requirements.txt ./
 
-ENV MYSQL_DATABASE=$MYSQL_DATABASE
-ENV MYSQL_USER=$MYSQL_USER
-ENV MYSQL_PASSWORD=$MYSQL_PASSWORD
-ENV MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+COPY .env ./
 
-COPY ./sql_scripts/ice_db.sql /docker-entrypoint-initdb.d/ice_db.sql
+RUN pip install -r requirements.txt
 
-EXPOSE 3306
+ADD app_api/ /
+
+EXPOSE 8080
+
+CMD [ "python", "app.py" ]

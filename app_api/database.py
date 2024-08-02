@@ -11,7 +11,7 @@ def connect():
     """
     try:
         conn = mysql.connector.connect(
-            host="localhost",
+            host="sales_db",
             user=os.getenv('MYSQL_USER'),
             password=os.getenv('MYSQL_PASSWORD'),
             database=os.getenv('MYSQL_DATABASE'),
